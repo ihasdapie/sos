@@ -1,4 +1,3 @@
-
 ; process: 
 ; Disable interrupts
 ; Load our GDT

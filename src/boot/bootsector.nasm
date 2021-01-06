@@ -14,12 +14,12 @@ KERNEL_OFFSET equ 0x1000 ; same as when linking kernel (-Ttext 0x1000)
     jmp $
 
 
-%include "./boot_sector_disk.nasm"
-%include "./boot_sector_print.nasm"
-%include "./boot_sector_print_hex.nasm"
-%include "./32bit_gdt.nasm"
-%include "./32bit_print.nasm"
-%include "./32bit_switch.nasm"
+%include "boot/boot_sector_disk.nasm"
+%include "boot/boot_sector_print.nasm"
+%include "boot/boot_sector_print_hex.nasm"
+%include "boot/32bit_gdt.nasm"
+%include "boot/32bit_print.nasm"
+%include "boot/32bit_switch.nasm"
 
 [bits 16]
 load_kernel:
@@ -28,7 +28,7 @@ load_kernel:
     call print_nl
 
     mov bx, KERNEL_OFFSET ; read from disk and store in 0x1000
-    mov dh, 2 
+    mov dh, 16 ; to account for larger future kernels
     mov dl, [BOOT_DRIVE]
     call disk_load ; moves 2 sectors (dh) into dl (boot drive)
     ret
