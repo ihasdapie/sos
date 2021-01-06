@@ -38,7 +38,7 @@ load_kernel:
 BEGIN_PM:
     mov ebx, MSG_PROT_MODE
     call print_string_pm
-    call KERNEL_OFFSET ; give control to kernek
+    call KERNEL_OFFSET ; give control to kernel
     jmp $ ; hang here if kernel gives control back
 
 
@@ -51,7 +51,6 @@ MSG_LOAD_KERNEL db "Loading kernel into memory", 0
 ; magic number bootsector
 times 510-($-$$) db 0
 dw 0xaa55
-
 
 
 
